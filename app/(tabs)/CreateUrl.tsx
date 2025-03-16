@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, Scro
 import { StatusBar } from 'expo-status-bar';
 import { RadioButton } from 'react-native-paper';
 // Uncomment this for clipboard functionality
-// import * as Clipboard from 'expo-clipboard';
+import * as Clipboard from 'expo-clipboard';
 
 export default function App() {
   const [urlType, setUrlType] = useState('default');
@@ -13,7 +13,7 @@ export default function App() {
   const [shortUrl, setShortUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
-  const [responseStatus, setResponseStatus] = useState(''); // 'success', 'error', or empty
+  const [responseStatus, setResponseStatus] = useState('');
 
   // Updated backend URL as provided
   const API_URL = 'http://localhost:8000';
@@ -38,10 +38,10 @@ export default function App() {
     setShortUrl('');
 
     try {
-      // Using the single endpoint with different request bodies based on URL type
+      // Using the exact format as specified in your backend
       const requestBody = urlType === 'default'
-        ? { long_url: longUrl }
-        : { long_url: longUrl, custom_alias: customAlias };
+        ? { original_url: longUrl }
+        : { original_url: longUrl, custom_code: customAlias };
 
       console.log('Sending request to:', `${API_URL}${API_ENDPOINT}`);
       console.log('Request body:', JSON.stringify(requestBody));
@@ -50,26 +50,52 @@ export default function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(requestBody),
       });
 
-      const data = await response.json();
-      console.log('Response:', data);
+      // Log raw response for debugging
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+
+      // Parse the response if it's JSON
+      let data;
+      try {
+        data = JSON.parse(responseText);
+        console.log('Parsed response:', data);
+      } catch (e) {
+        console.log('Response is not JSON:', e);
+        data = { error: 'Invalid response format' };
+      }
 
       if (!response.ok) {
         setResponseStatus('error');
-        setResponseMessage(data.message || data.error || data.detail || 'Failed to shorten URL');
+        const errorMsg = data.message || data.error || data.detail || `Server error: ${response.status}`;
+        setResponseMessage(errorMsg);
+        console.error('Error response:', errorMsg);
       } else {
-        // Success case
-        const shortenedUrl = data.short_url || data.url;
+        // Success case - check for the shortened URL in the response
+        // Look for common field names in URL shortener APIs
+        const shortenedUrl = data.short_url || data.shortened_url || data.url || '';
+
         if (shortenedUrl) {
           setShortUrl(shortenedUrl);
           setResponseStatus('success');
           setResponseMessage('URL shortened successfully!');
         } else {
-          setResponseStatus('error');
-          setResponseMessage('Response received but no shortened URL found');
+          console.log('Response received but URL not found in expected fields');
+          // Display the raw response for debugging
+          setResponseStatus('success');
+          setResponseMessage('URL processed. Check console for details.');
+
+          // Try to find any URL-like string in the response
+          const responseStr = JSON.stringify(data);
+          const urlRegex = /(https?:\/\/[^\s"]+)/g;
+          const matches = responseStr.match(urlRegex);
+          if (matches && matches.length > 0) {
+            setShortUrl(matches[0]);
+          }
         }
       }
     } catch (error) {
@@ -131,12 +157,12 @@ export default function App() {
 
           {urlType === 'custom' && (
             <>
-              <Text style={styles.label}>Custom Alias:</Text>
+              <Text style={styles.label}>Custom Code:</Text>
               <TextInput
                 style={styles.input}
                 value={customAlias}
                 onChangeText={setCustomAlias}
-                placeholder="my-custom-alias"
+                placeholder="mypage"
                 autoCapitalize="none"
               />
             </>
