@@ -120,7 +120,7 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, TextInput, View, Button, Text } from "react-native";
 import { supabase } from "@/lib/supabase-client.js";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity, GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack, router } from "expo-router"; // Add router import
 
 export default function AuthPage() {
