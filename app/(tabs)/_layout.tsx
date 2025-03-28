@@ -54,6 +54,7 @@ import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { supabase } from '@/lib/supabase-client';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -83,35 +84,81 @@ export default function TabLayout() {
   }
 
   return user ? (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="Analytics"
-        options={{
-          title: 'Analytics',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  ) : null; // Don't render tabs if user is not authenticated
-}
+//     <Tabs
+//       screenOptions={{
+//         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+//         headerShown: false,
+//         tabBarButton: HapticTab,
+//         tabBarBackground: TabBarBackground,
+//         tabBarStyle: Platform.select({
+//           ios: {
+//             // Use a transparent background on iOS to show the blur effect
+//             position: 'absolute',
+//           },
+//           default: {},
+//         }),
+//       }}
+//     >
+//       <Tabs.Screen
+//         name="index"
+//         options={{
+//           title: 'Home',
+//           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+//         }}
+//       />
+//       <Tabs.Screen
+//         name="Analytics"
+//         options={{
+//           title: 'Analytics',
+//           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+//         }}
+//       />
+//     </Tabs>
+//   ) : null; // Don't render tabs if user is not authenticated
+// }
+
+<Tabs
+  screenOptions={{
+    tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+    headerShown: false,
+    tabBarButton: HapticTab,
+    tabBarBackground: TabBarBackground,
+    tabBarStyle: Platform.select({
+      ios: {
+        // Use a transparent background on iOS to show the blur effect
+        position: 'absolute',
+      },
+      default: {},
+    }),
+  }}
+>
+  {/* Home Screen */}
+  <Tabs.Screen
+    name="index"
+    options={{
+      title: 'Home',
+      tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+    }}
+  />
+
+  {/* Explore Screen (Renamed from Analytics) */}
+  <Tabs.Screen
+    name="Explore"
+    options={{
+      title: 'Explore',
+      tabBarIcon: ({ color }) => <IconSymbol size={28} name="magnifying glass.circle.fill" color={color} />,
+    }}
+  />
+
+  {/* Create URL Screen */}
+  <Tabs.Screen
+    name="CreateURL"
+    options={{
+      title: 'Create URL',
+     tabBarIcon: ({ color }) => <IconSymbol size={28} name="link.badge.plus" color={color} />
+
+    }}
+  />
+</Tabs>
+ ) : null; // Don't render tabs if user is not authenticated
+ }
