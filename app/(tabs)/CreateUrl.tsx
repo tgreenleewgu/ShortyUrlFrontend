@@ -1,23 +1,18 @@
-
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RadioButton } from 'react-native-paper';
 import * as Clipboard from 'expo-clipboard';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from "@/lib/supabase-client.js";
 
-// Simple text-based logo component
-const ShortyUrlLogo = () => {
-  return (
-    <View style={styles.logoContainer}>
-      <Text style={styles.logoText}>Shorty</Text>
-      <Text style={styles.logoSubText}>URL</Text>
-    </View>
-  );
-};
+const ShortyUrlLogo = () => (
+  <View style={styles.logoContainer}>
+    <Text style={styles.logoText}>Shorty</Text>
+    <Text style={styles.logoSubText}>URL</Text>
+  </View>
+);
 
-export default function App() {
+export default function App({ navigation }) {
   const [urlType, setUrlType] = useState('default');
   const [longUrl, setLongUrl] = useState('');
   const [customAlias, setCustomAlias] = useState('');
@@ -28,25 +23,42 @@ export default function App() {
   const [userEmail, setUserEmail] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Backend URLs
   const API_URL = 'http://localhost:8000';
   const API_ENDPOINT = '/api/shorten/';
 
-  // Check for logged in user on component mount
+  // ⛓️ Supabase session management
   useEffect(() => {
-    const checkUserSession = async () => {
+    const checkSupabaseSession = async () => {
       try {
-        const email = await AsyncStorage.getItem('userEmail');
-        if (email) {
-          setUserEmail(email);
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) {
+          console.error('Supabase session error:', error);
+        } else if (session) {
+          setUserEmail(session.user.email);
           setIsLoggedIn(true);
         }
-      } catch (error) {
-        console.error('Error checking user session:', error);
+      } catch (err) {
+        console.error('Session check error:', err);
       }
     };
 
-    checkUserSession();
+    checkSupabaseSession();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        setUserEmail(session.user.email);
+        setIsLoggedIn(true);
+      } else if (event === 'SIGNED_OUT') {
+        setUserEmail('');
+        setIsLoggedIn(false);
+      }
+    });
+
+    return () => {
+      if (authListener?.subscription) {
+        authListener.subscription.unsubscribe();
+      }
+    };
   }, []);
 
   const shortenUrl = async () => {
@@ -63,23 +75,20 @@ export default function App() {
     }
 
     setIsLoading(true);
+    setShortUrl('');
     setResponseMessage('');
     setResponseStatus('');
-    setShortUrl('');
 
     try {
-      // Add user email to request body if logged in
       const requestBody = urlType === 'default'
         ? { original_url: longUrl }
         : { original_url: longUrl, custom_code: customAlias };
 
-      // Include user email in request if available
       if (isLoggedIn && userEmail) {
         requestBody.email = userEmail;
       }
 
-      console.log('Sending request to:', `${API_URL}${API_ENDPOINT}`);
-      console.log('Request body:', JSON.stringify(requestBody));
+      console.log('Sending to backend with email:', userEmail);
 
       const response = await fetch(`${API_URL}${API_ENDPOINT}`, {
         method: 'POST',
@@ -90,53 +99,37 @@ export default function App() {
         body: JSON.stringify(requestBody),
       });
 
-
-
-      // Log raw response for debugging
       const responseText = await response.text();
-      console.log('Raw response:', responseText);
-
-      // Parse the response if it's JSON
       let data;
       try {
         data = JSON.parse(responseText);
-        console.log('Parsed response:', data);
-      } catch (e) {
-        console.log('Response is not JSON:', e);
+      } catch {
         data = { error: 'Invalid response format' };
       }
 
       if (!response.ok) {
-        setResponseStatus('error');
         const errorMsg = data.message || data.error || data.detail || `Server error: ${response.status}`;
+        setResponseStatus('error');
         setResponseMessage(errorMsg);
-        console.error('Error response:', errorMsg);
       } else {
-        // Success case - check for the shortened URL in the response
         const shortenedUrl = data.short_url || data.shortened_url || data.url || '';
-
         if (shortenedUrl) {
           setShortUrl(shortenedUrl);
           setResponseStatus('success');
           setResponseMessage('URL shortened successfully!');
         } else {
-          console.log('Response received but URL not found in expected fields');
           setResponseStatus('success');
           setResponseMessage('URL processed. Check console for details.');
-
-          // Try to find any URL-like string in the response
           const responseStr = JSON.stringify(data);
-          const urlRegex = /(https?:\/\/[^\s"]+)/g;
-          const matches = responseStr.match(urlRegex);
+          const matches = responseStr.match(/(https?:\/\/[^\s"]+)/g);
           if (matches && matches.length > 0) {
             setShortUrl(matches[0]);
           }
         }
       }
-    } catch (error) {
-      console.error('Error in API call:', error);
+    } catch (err) {
       setResponseStatus('error');
-      setResponseMessage(`API Error: ${error.message || 'Unknown error occurred'}`);
+      setResponseMessage(`API Error: ${err.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -150,117 +143,39 @@ export default function App() {
     setResponseStatus('');
   };
 
-  const handleLogin = async (email) => {
-    // This would be replaced with your actual login flow
-    try {
-      await AsyncStorage.setItem('userEmail', email);
-      setUserEmail(email);
-      setIsLoggedIn(true);
-    } catch (error) {
-      console.error('Error saving user email:', error);
-    }
-  };
-
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('userEmail');
-      setUserEmail('');
-      setIsLoggedIn(false);
-    } catch (error) {
-      console.error('Error during logout:', error);
+      const { error } = await supabase.auth.signOut();
+      if (error) console.error('Logout failed:', error);
+    } catch (err) {
+      console.error('Unexpected logout error:', err);
     }
   };
 
-
-    const renderLoginSection = () => {
-      const [isLoggedIn, setIsLoggedIn] = useState(false);
-      const [userEmail, setUserEmail] = useState('');
-
-      // Check if user is logged in with Supabase on component mount
-      useEffect(() => {
-        const checkSupabaseSession = async () => {
-          try {
-            // Get current Supabase session
-            const { data: { session }, error } = await supabase.auth.getSession();
-
-            if (error) {
-              console.error('Error checking Supabase session:', error);
-              return;
-            }
-
-            if (session) {
-              setIsLoggedIn(true);
-              setUserEmail(session.user.email);
-              console.log('User logged in with email:', session.user.email);
-            } else {
-              setIsLoggedIn(false);
-              setUserEmail('');
-            }
-          } catch (error) {
-            console.error('Unexpected error in session check:', error);
-          }
-        };
-
-        checkSupabaseSession();
-
-        // Subscribe to auth changes
-        const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-          if (event === 'SIGNED_IN' && session) {
-            setIsLoggedIn(true);
-            setUserEmail(session.user.email);
-          } else if (event === 'SIGNED_OUT') {
-            setIsLoggedIn(false);
-            setUserEmail('');
-          }
-        });
-
-        // Clean up subscription
-        return () => {
-          if (authListener && authListener.subscription) {
-            authListener.subscription.unsubscribe();
-          }
-        };
-      }, []);
-
-      const handleLogout = async () => {
-        try {
-          const { error } = await supabase.auth.signOut();
-          if (error) {
-            console.error('Error signing out:', error);
-          }
-        } catch (error) {
-          console.error('Unexpected error during logout:', error);
-        }
-      };
-
-      if (isLoggedIn) {
-        return (
-          <View style={styles.loginSection}>
-            <Text style={styles.userInfo}>Logged in as: {userEmail}</Text>
-            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-              <Text style={styles.logoutButtonText}>Logout</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      } else {
-        return (
-          <View style={styles.loginPrompt}>
-            <Text style={styles.loginText}>
-              Log in to track your shortened URLs
-            </Text>
-            <TouchableOpacity
-              style={styles.loginButton}
-              onPress={() => {
-                // Navigate to your Supabase login screen
-                navigation.navigate('app/(auth)/login.js'); // Replace with your actual navigation logic
-              }}
-            >
-              <Text style={styles.loginButtonText}>Log In</Text>
-            </TouchableOpacity>
-          </View>
-        );
-      }
-    };
+  const renderLoginSection = () => {
+    if (isLoggedIn) {
+      return (
+        <View style={styles.loginSection}>
+          <Text style={styles.userInfo}>Logged in as: {userEmail}</Text>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutButtonText}>Logout</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.loginPrompt}>
+          <Text style={styles.loginText}>Log in to track your shortened URLs</Text>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={() => navigation.navigate('app/(auth)/login')}
+          >
+            <Text style={styles.loginButtonText}>Log In</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -268,30 +183,21 @@ export default function App() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.card}>
           <ShortyUrlLogo />
-
           {renderLoginSection()}
 
           <Text style={styles.label}>URL Type:</Text>
           <View style={styles.radioGroup}>
-            <View style={styles.radioOption}>
-              <RadioButton
-                value="default"
-                status={urlType === 'default' ? 'checked' : 'unchecked'}
-                onPress={() => setUrlType('default')}
-                color="#007BFF"
-              />
-              <Text onPress={() => setUrlType('default')} style={{ color: '#FFFFFF' }}>Default</Text>
-            </View>
-
-            <View style={styles.radioOption}>
-              <RadioButton
-                value="custom"
-                status={urlType === 'custom' ? 'checked' : 'unchecked'}
-                onPress={() => setUrlType('custom')}
-                color="#007BFF"
-              />
-              <Text onPress={() => setUrlType('custom')} style={{ color: '#FFFFFF' }}>Custom</Text>
-            </View>
+            {['default', 'custom'].map(type => (
+              <View key={type} style={styles.radioOption}>
+                <RadioButton
+                  value={type}
+                  status={urlType === type ? 'checked' : 'unchecked'}
+                  onPress={() => setUrlType(type)}
+                  color="#007BFF"
+                />
+                <Text onPress={() => setUrlType(type)} style={{ color: '#FFFFFF' }}>{type.charAt(0).toUpperCase() + type.slice(1)}</Text>
+              </View>
+            ))}
           </View>
 
           <Text style={styles.label}>Enter Long URL:</Text>
@@ -341,18 +247,16 @@ export default function App() {
             </TouchableOpacity>
           </View>
 
-          {/* Response message area */}
-          {responseMessage ? (
+          {responseMessage && (
             <View style={[
               styles.messageContainer,
               responseStatus === 'success' ? styles.successMessage : styles.errorMessage
             ]}>
               <Text style={styles.messageText}>{responseMessage}</Text>
             </View>
-          ) : null}
+          )}
 
-          {/* Shortened URL result area */}
-          {shortUrl ? (
+          {shortUrl && (
             <View style={styles.resultContainer}>
               <Text style={styles.resultLabel}>Shortened URL:</Text>
               <Text style={styles.resultUrl}>{shortUrl}</Text>
@@ -371,12 +275,14 @@ export default function App() {
                 <Text style={styles.buttonText}>Copy URL</Text>
               </TouchableOpacity>
             </View>
-          ) : null}
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
+// ✅ Make sure your `styles` object is defined elsewhere in your file.
 
 
 const styles = StyleSheet.create({
