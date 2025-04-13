@@ -1,27 +1,72 @@
 
-import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000/api/shorten';  // Adjust to correct backend URL
+// src/services/api.js
+import { supabase } from '../supabaseClient';
 
-// Function to shorten URL
-export const shortenURL = async (token, originalUrl, customCode) => {
-  try {
-    const response = await axios.post(
-      `${API_BASE_URL}/shorten/`,  // No extra "/shorten/" here
-      {
-        original_url: originalUrl,
-        custom_code: customCode,
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`,  // Ensure token is correctly passed
-          'Content-Type': 'application/json', // Explicitly define content type
-        },
+export const urlService = {
+  shortenUrl: async (originalUrl, customCode = '') => {
+    try {
+      // Get the current session from Supabase
+      const { data, error } = await supabase.auth.getSession();
+
+      console.log('Session data:', data); // Check what this logs
+
+      if (error || !data.session) {
+        console.error('Auth error:', error);
+        throw new Error('Not authenticated');
       }
-    );
-    return response.data;  // Return the shortened URL response data
-  } catch (error) {
-    console.error('Error shortening URL:', error.response?.data || error.message);
-    throw error;  // Optionally handle the error as needed
+
+      const token = data.session.access_token;
+      console.log('Token exists:', !!token); // Check if token exists
+
+      // Log request details for debugging
+      console.log('Sending request to:', 'http://localhost:8000/api/shorten/');
+      console.log('Request body:', JSON.stringify({
+        original_url: originalUrl,
+        custom_code: customCode
+      }));
+      console.log('Authorization header:', `Bearer ${token.substring(0, 10)}...`);
+
+      // Make the request with explicit headers
+      const response = await fetch('http://localhost:8000/api/shorten/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          original_url: originalUrl,
+          custom_code: customCode
+        })
+      });
+
+      console.log('Raw response:', await response.text()); // Log the raw response
+
+      // Need to make a second request since we consumed the response body above
+      const responseJson = await fetch('http://localhost:8000/api/shorten/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          original_url: originalUrl,
+          custom_code: customCode
+        })
+      }).then(res => res.json());
+
+      console.log('Parsed response:', responseJson);
+
+      if (!response.ok) {
+        throw new Error(responseJson.detail || responseJson.error || 'Failed to shorten URL');
+      }
+
+      return responseJson;
+    } catch (error) {
+      console.error('Error in shortenUrl:', error);
+      throw error;
+    }
   }
 };
