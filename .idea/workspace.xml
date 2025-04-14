@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="working version with email send to DB">
+    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="quick fix for email issue in DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/CreateUrl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/CreateUrl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/Analytics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/Analytics.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744504975358</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="quick fix for email issue in DB">
+      <option name="closed" value="true" />
+      <created>1744506661149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744506661149</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,6 +147,7 @@
     <MESSAGE value="got frontend working with backend and DB. &#10;POST and GET are working." />
     <MESSAGE value="updated tabs" />
     <MESSAGE value="working version with email send to DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="working version with email send to DB" />
+    <MESSAGE value="quick fix for email issue in DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="quick fix for email issue in DB" />
   </component>
 </project>
