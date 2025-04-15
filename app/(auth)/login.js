@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 40,
     padding: 12,
-    backgroundColor: "#fff",
+    backgroundColor: "#121212",
   },
   verticallySpaced: {
     paddingTop: 4,
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonContainer: {
-    backgroundColor: "#000968",
+    backgroundColor: "#8A2BE2",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
@@ -176,19 +176,19 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   textInput: {
-    borderColor: "#000968",
+    borderColor: "#8A2BE2",
     borderRadius: 4,
     borderStyle: "solid",
     borderWidth: 1,
     padding: 12,
     margin: 8,
-    color: "#000",
-    backgroundColor: "#fff",
+    color: "#fff",
+    backgroundColor: "#1E1E1E",
   },
   statusText: {
     textAlign: "center",
     padding: 10,
-    color: "#000",
+    color: "#FFFFFF",
     fontWeight: "bold",
   },
 });

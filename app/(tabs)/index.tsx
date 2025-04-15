@@ -96,7 +96,13 @@ export default function HomeScreen() {
   );
 }
 
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f2f2f2', // Light background color
+    padding: 16,
+  },
   titleContainer: {
     alignItems: 'center',
     marginBottom: 12,
@@ -160,4 +166,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-

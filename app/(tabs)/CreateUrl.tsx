@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RadioButton } from 'react-native-paper';
 import * as Clipboard from 'expo-clipboard';
-import { supabase } from "@/lib/supabase-client.js";
+import { supabase } from '@/lib/supabase-client.js';
 
 const ShortyUrlLogo = () => (
   <View style={styles.logoContainer}>
@@ -26,7 +36,6 @@ export default function App({ navigation }) {
   const API_URL = 'http://localhost:8000';
   const API_ENDPOINT = '/api/shorten/';
 
-  // ⛓️ Supabase session management
   useEffect(() => {
     const checkSupabaseSession = async () => {
       try {
@@ -88,8 +97,6 @@ export default function App({ navigation }) {
         requestBody.email = userEmail;
       }
 
-      console.log('Sending to backend with email:', userEmail);
-
       const response = await fetch(`${API_URL}${API_ENDPOINT}`, {
         method: 'POST',
         headers: {
@@ -118,12 +125,11 @@ export default function App({ navigation }) {
           setResponseStatus('success');
           setResponseMessage('URL shortened successfully!');
         } else {
-          setResponseStatus('success');
-          setResponseMessage('URL processed. Check console for details.');
-          const responseStr = JSON.stringify(data);
-          const matches = responseStr.match(/(https?:\/\/[^\s"]+)/g);
+          const matches = JSON.stringify(data).match(/(https?:\/\/[^\s"]+)/g);
           if (matches && matches.length > 0) {
             setShortUrl(matches[0]);
+            setResponseStatus('success');
+            setResponseMessage('URL processed. Check console for details.');
           }
         }
       }
@@ -183,7 +189,6 @@ export default function App({ navigation }) {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.card}>
           <ShortyUrlLogo />
-          {renderLoginSection()}
 
           <Text style={styles.label}>URL Type:</Text>
           <View style={styles.radioGroup}>
@@ -195,7 +200,9 @@ export default function App({ navigation }) {
                   onPress={() => setUrlType(type)}
                   color="#007BFF"
                 />
-                <Text onPress={() => setUrlType(type)} style={{ color: '#FFFFFF' }}>{type.charAt(0).toUpperCase() + type.slice(1)}</Text>
+                <Text onPress={() => setUrlType(type)} style={{ color: '#333' }}>
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </Text>
               </View>
             ))}
           </View>
@@ -247,6 +254,8 @@ export default function App({ navigation }) {
             </TouchableOpacity>
           </View>
 
+          {renderLoginSection()}
+
           {responseMessage && (
             <View style={[
               styles.messageContainer,
@@ -260,7 +269,6 @@ export default function App({ navigation }) {
             <View style={styles.resultContainer}>
               <Text style={styles.resultLabel}>Shortened URL:</Text>
               <Text style={styles.resultUrl}>{shortUrl}</Text>
-
               <TouchableOpacity
                 style={[styles.button, styles.primaryButton, styles.copyButton]}
                 onPress={async () => {
@@ -282,143 +290,187 @@ export default function App({ navigation }) {
   );
 }
 
-// ✅ Make sure your `styles` object is defined elsewhere in your file.
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: '#121212',  // Dark background
   },
   scrollContainer: {
-    flexGrow: 1,
     padding: 20,
+    flexGrow: 1,
     justifyContent: 'center',
   },
   card: {
-    backgroundColor: '#1E1E1E',
-    borderRadius: 12,
+    backgroundColor: '#1E1E1E',  // Darker card background
+    borderRadius: 16,
     padding: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 },
   },
-  //Logo styles
   logoContainer: {
     alignItems: 'center',
     marginBottom: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
   },
   logoText: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: 'bold',
-    color: '#8A2BE2',
+    color: '#8A2BE2',  // Purple logo text
   },
   logoSubText: {
-    fontSize: 26,
+    fontSize: 24,
+    fontWeight: '300',
+    color: '#8A2BE2',  // Lighter grey for subtext
+  },
+  loginSection: {
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: '#2C2C2C',  // Darker background for sections
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  userInfo: {
+    color: '#DDDDDD',  // Light grey for text
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  logoutButton: {
+    marginTop: 10,
+    backgroundColor: '#DC3545',  // Red for logout button
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    width: '100%',
+    alignItems: 'center',
+  },
+  logoutButtonText: {
+    color: '#FFFFFF',
     fontWeight: 'bold',
-    color: '#8A2BE2',
-    marginLeft: 5,
+    fontSize: 16,
+  },
+  loginPrompt: {
+    marginBottom: 30,
+    padding: 15,
+    backgroundColor: '#2C2C2C',
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  loginText: {
+    color: '#DDDDDD',
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  loginButton: {
+    backgroundColor: '#8A2BE2',  // Purple for login button
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    width: '100%',
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   label: {
+    color: '#FFFFFF',  // Lighter grey text for labels
     fontSize: 16,
-    color: '#EEEEEE',
-    marginBottom: 8,
+    marginTop: 15,
+    marginBottom: 5,
   },
   radioGroup: {
     flexDirection: 'row',
-    marginBottom: 15,
+    justifyContent: 'space-around',
+    marginBottom: 10,
   },
   radioOption: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 20,
-  },
-  radioText: {
-    color: '#FFF',
+    color: '#FFFFFF'
   },
   input: {
-    backgroundColor: '#2C2C2C',
-    color: '#FFFFFF',
+    backgroundColor: '#2C2C2C',  // Darker background for inputs
+    color: '#FFFFFF',  // White text inside input
+    padding: 10,
     borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
-    marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#8A2BE2',
+    borderColor: '#8A2BE2',  // Purple border
+    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginTop: 10,
   },
   button: {
     flex: 1,
-    padding: 14,
-    borderRadius: 10,
+    paddingVertical: 12,
+    borderRadius: 8,
     alignItems: 'center',
     marginHorizontal: 5,
   },
   primaryButton: {
-    backgroundColor: '#8A2BE2',
+    backgroundColor: '#8A2BE2',  // Purple primary button
   },
   secondaryButton: {
-    backgroundColor: '#333',
-    borderWidth: 1,
-    borderColor: '#8A2BE2',
+    backgroundColor: '#333',  // Dark grey for secondary button
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 16,
+    color: '#FFFFFF',
     fontWeight: 'bold',
+    fontSize: 16,
   },
   secondaryButtonText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: 'bold',
   },
   messageContainer: {
-    padding: 15,
+    marginTop: 15,
+    padding: 10,
     borderRadius: 8,
-    marginBottom: 15,
   },
   successMessage: {
-    backgroundColor: '#28a745',
+    backgroundColor: '#28a745',  // Green for success
   },
   errorMessage: {
-    backgroundColor: '#dc3545',
+    backgroundColor: '#dc3545',  // Red for error
   },
   messageText: {
-    color: '#FFF',
-    fontSize: 16,
+    color: '#FFFFFF',  // White text for messages
+    textAlign: 'center',
   },
   resultContainer: {
-    backgroundColor: '#1E1E1E',
-    padding: 15,
-    borderRadius: 10,
-    borderLeftWidth: 4,
-    borderLeftColor: '#8A2BE2',
+    marginTop: 20,
+    alignItems: 'center',
   },
   resultLabel: {
+    color: '#DDDDDD',  // Light grey text
     fontSize: 16,
-    color: '#EEEEEE',
     marginBottom: 5,
   },
   resultUrl: {
-    fontSize: 16,
-    color: '#8A2BE2',
+    color: '#8A2BE2',  // Purple for result URLs
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 10,
   },
   copyButton: {
     marginTop: 10,
-    backgroundColor: '#8A2BE2',
+    width: '80%',
+    backgroundColor: '#8A2BE2',  // Purple copy button
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
   },
   placeholder: {
-      color: '#888888',
+    color: '#888888',  // Light grey placeholder text
   },
 });
+
+
+
+
 
 
