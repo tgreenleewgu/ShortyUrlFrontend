@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="working version with correct analytics with user email only.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(auth)/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(settings)/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/(settings)/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/Analytics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/Analytics.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/CreateUrl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/CreateUrl.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
