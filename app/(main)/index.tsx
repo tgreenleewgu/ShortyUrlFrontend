@@ -79,6 +79,12 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
 
+      <TouchableOpacity style={styles.loginButton} onPress={() => router.push("/(auth)/login")}>
+        <ThemedText type="defaultSemiBold" style={styles.buttonText}>
+          GO TO LOGIN
+        </ThemedText>
+      </TouchableOpacity>
+
       {/* Logout Button */}
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <ThemedText type="defaultSemiBold" style={styles.buttonText}>
@@ -165,4 +171,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  loginButton: {
+    backgroundColor: '#6f42c1', // purple shade
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 16,
+    marginBottom: 40,
+    alignSelf: 'center',
+    width: '80%',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+
 });
