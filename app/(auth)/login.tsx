@@ -201,7 +201,6 @@ const BACKEND_URL = "http://localhost:8000"; // Django server
 export default function LoginPage() {
   const [status, setStatus] = useState("Ready to sign in");
 
-  // Optional: check if already logged in, then auto-redirect to /
   useEffect(() => {
     checkSession();
   }, []);
@@ -215,7 +214,7 @@ export default function LoginPage() {
       if (res.ok) {
         const data = await res.json();
         if (data.username) {
-          router.replace("/"); // Already logged in → go to tabs
+          router.replace("/");
         }
       }
     } catch (err) {
@@ -225,20 +224,28 @@ export default function LoginPage() {
 
   const handleGitHubLogin = () => {
     setStatus("Redirecting to GitHub...");
-    // Triggers GitHub login flow via Django Allauth
     window.location.href = `${BACKEND_URL}/accounts/github/login/`;
+  };
+
+  const handleGoogleLogin = () => {
+    setStatus("Redirecting to Google...");
+    window.location.href = `${BACKEND_URL}/accounts/google/login/`;
   };
 
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ headerShown: true, title: "Sign In" }} />
 
-      <Text style={styles.title}>Login with GitHub</Text>
+      <Text style={styles.title}>Login with GitHub or Google</Text>
 
       {status ? <Text style={styles.status}>{status}</Text> : null}
 
       <TouchableOpacity style={styles.button} onPress={handleGitHubLogin}>
         <Text style={styles.buttonText}>Login with GitHub</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.button, { backgroundColor: "#DB4437", marginTop: 10 }]} onPress={handleGoogleLogin}>
+        <Text style={styles.buttonText}>Login with Google</Text>
       </TouchableOpacity>
     </View>
   );
