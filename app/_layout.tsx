@@ -1,24 +1,37 @@
+// _layout.tsx
+
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
+import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import 'react-native-reanimated';
-
+import { setCustomText } from 'react-native-global-props';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import 'react-native-reanimated';
+import { Colors } from '@/constants/Colors';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Inter_700Bold,
   });
+
+  const customTextProps = {
+    style: {
+      fontFamily: 'Inter_400Regular',
+    },
+  };
 
   useEffect(() => {
     if (loaded) {
+      setCustomText(customTextProps);
       SplashScreen.hideAsync();
     }
   }, [loaded]);
@@ -26,6 +39,8 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
+
+
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -39,7 +54,7 @@ export default function RootLayout() {
 }
 
 
-//wokring for app but not web
+//wokring for mobile app but not web
 
 // import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 // import { useFonts } from 'expo-font';

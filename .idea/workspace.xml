@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment=" changed tabs to main">
+    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="added google auth, but will not function in local dev setting will redeploy when app is under a single domain.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/_layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(auth)/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/Analytics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/Analytics.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/CreateUrl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/CreateUrl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Colors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Colors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,15 +65,17 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "working__branch",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/travi/code/frontend/ShortyUrlFrontend",
+    "last_opened_file_path": "C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\travi\code\frontend\ShortyUrlFrontend\assets\images" />
       <recent name="C:\code\frontend\ShortyUrlFrontend\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\travi\code\frontend\ShortyUrlFrontend\assets" />
       <recent name="C:\code\frontend\ShortyUrlFrontend\app\src" />
       <recent name="C:\code\frontend\ShortyUrlFrontend\app\context" />
     </key>
@@ -142,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746233532148</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added google auth, but will not function in local dev setting will redeploy when app is under a single domain.">
+      <option name="closed" value="true" />
+      <created>1746409549865</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746409549865</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +195,7 @@
     <MESSAGE value="working commit" />
     <MESSAGE value=" got soical auth working still need to get frontend nav fixed." />
     <MESSAGE value=" changed tabs to main" />
-    <option name="LAST_COMMIT_MESSAGE" value=" changed tabs to main" />
+    <MESSAGE value="added google auth, but will not function in local dev setting will redeploy when app is under a single domain." />
+    <option name="LAST_COMMIT_MESSAGE" value="added google auth, but will not function in local dev setting will redeploy when app is under a single domain." />
   </component>
 </project>
