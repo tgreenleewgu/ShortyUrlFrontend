@@ -12,25 +12,41 @@ import {
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Colors } from '@/constants/Colors';
+import Cookies from 'js-cookie';
 
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? 'light'];
 
-  const handleLogout = async () => {
-    try {
-      await fetch('http://localhost:8000/accounts/logout/', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      });
-      router.replace('/(auth)/login');
-    } catch (e) {
-      console.error('Logout error:', e);
-      Alert.alert('Logout Failed', 'Unable to log out.');
-    }
-  };
+ const handleLogout = async () => {
+   try {
+     // Step 1: Ensure the CSRF cookie is available
+     await fetch('http://localhost:8000/api/csrf/', {
+       credentials: 'include',
+     });
+
+     // Step 2: Get the CSRF token from cookies
+     const csrfToken = Cookies.get('csrftoken');
+
+     // Step 3: Perform logout with CSRF token
+     const res = await fetch('http://localhost:8000/accounts/logout/', {
+       method: 'POST',
+       credentials: 'include',
+       headers: {
+         'X-CSRFToken': csrfToken,
+         'X-Requested-With': 'XMLHttpRequest',
+       },
+     });
+
+     if (!res.ok) throw new Error('Logout failed');
+
+     router.replace('/(auth)/login');
+   } catch (e) {
+     console.error('Logout error:', e);
+     Alert.alert('Logout Failed', 'Unable to log out.');
+   }
+ };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>

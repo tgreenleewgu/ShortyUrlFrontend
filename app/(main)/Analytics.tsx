@@ -8,7 +8,10 @@ import {
   useColorScheme,
   View,
   Text,
+  TextInput,
   useWindowDimensions,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import axios from 'axios';
@@ -31,6 +34,8 @@ export default function AnalyticsScreen() {
   const { width } = useWindowDimensions();
 
   const [urls, setUrls] = useState([]);
+  const [filteredUrls, setFilteredUrls] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [copiedShortCode, setCopiedShortCode] = useState(null);
@@ -66,6 +71,7 @@ export default function AnalyticsScreen() {
       });
 
       setUrls(res.data);
+      setFilteredUrls(res.data);
     } catch (err) {
       setError("Failed to load analytics.");
     } finally {
@@ -104,12 +110,44 @@ export default function AnalyticsScreen() {
     }, 3000);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (!query.trim()) {
+      setFilteredUrls(urls);
+    } else {
+      const lowerQuery = query.toLowerCase();
+      const filtered = urls.filter((url) =>
+        url.original_url.toLowerCase().includes(lowerQuery) ||
+        url.short_code.toLowerCase().includes(lowerQuery)
+      );
+      setFilteredUrls(filtered);
+    }
+  };
+
   useEffect(() => {
     fetchAnalytics();
   }, [fetchAnalytics]);
 
+  const formatDate = (isoString) => {
+    if (!isoString || typeof isoString !== 'string') return null;
+    const date = new Date(isoString);
+    if (isNaN(date.getTime())) return null;
+    return date.toLocaleString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+//       timeZoneName: 'short', // keep this if you want to show EDT, PDT, etc.
+    });
+  };
+
   return (
-    <View style={[styles.container, { backgroundColor: theme.background }]}>
+    <KeyboardAvoidingView
+      style={[styles.container, { backgroundColor: theme.background }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
 
       <TouchableOpacity
@@ -126,54 +164,61 @@ export default function AnalyticsScreen() {
         <Ionicons name="link-sharp" size={35} color={theme.text} />
       </TouchableOpacity>
 
-      {loading ? (
-        <View style={styles.centeredContent}>
-          <ActivityIndicator size="large" />
-        </View>
-      ) : error ? (
-        <View style={styles.centeredContent}>
-          <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
-        </View>
-      ) : urls.length === 0 ? (
-        <View style={styles.centeredContent}>
-          <Text style={{ color: theme.text, textAlign: 'center' }}>No URLs found.</Text>
-        </View>
-      ) : (
-        <FlatList
-          data={urls}
-          keyExtractor={(item) => item.short_code}
-          contentContainerStyle={[styles.list, { alignItems: 'center', paddingBottom: 100 }]}
-          ListHeaderComponent={
-            <View style={styles.innerContainer}>
-              <Text style={[styles.pageTitle, { color: theme.text }]}>Your Analytics</Text>
-              <Text style={[styles.subtext, { color: theme.muted }]}>Track performance of your shortened URLs</Text>
-            </View>
-          }
-          renderItem={({ item }) => (
-            <View style={[styles.card, { backgroundColor: theme.card, borderLeftColor: theme.primary, width: width - 40 }]}>
-              <Text style={[styles.urlText, { color: theme.text }]}>{item.original_url}</Text>
-              <Text style={{ color: theme.text }}>Short code: {item.short_code}</Text>
-              <Text style={{ color: theme.text }}>Clicks: {item.clicks}</Text>
+      <FlatList
+        data={filteredUrls}
+        keyExtractor={(item) => item.short_code}
+        contentContainerStyle={[styles.list, { alignItems: 'center', paddingTop: 24, paddingBottom: 100 }]}
+        ListHeaderComponent={
+          <View style={styles.innerContainer}>
+            <Text style={[styles.pageTitle, { color: theme.text }]}>Your Analytics</Text>
+            <Text style={[styles.subtext, { color: theme.muted }]}>Track performance of your shortened URLs</Text>
+            <TextInput
+              style={[styles.searchInput, { borderColor: theme.primary, color: theme.text }]}
+              placeholder="Search URLs or short codes..."
+              placeholderTextColor={theme.muted}
+              value={searchQuery}
+              onChangeText={handleSearch}
+            />
+          </View>
+        }
+        ListEmptyComponent={
+          loading ? (
+            <ActivityIndicator size="large" />
+          ) : error ? (
+            <Text style={{ color: 'red', textAlign: 'center' }}>{error}</Text>
+          ) : (
+            <Text style={{ color: theme.text, textAlign: 'center' }}>No URLs found.</Text>
+          )
+        }
+        renderItem={({ item }) => (
+          <View style={[styles.card, { backgroundColor: theme.card, borderLeftColor: theme.primary, width: width - 60 }]}>
+            <Text style={[styles.urlText, { color: theme.text }]}>{item.original_url}</Text>
+            <Text style={{ color: theme.text }}>Short code: {item.short_code}</Text>
+            <Text style={{ color: theme.text }}>Clicks: {item.clicks}</Text>
+            {item.created_at && formatDate(item.created_at) && (
+              <Text style={{ color: theme.muted, marginTop: 6 }}>
+                Created on: {formatDate(item.created_at)}
+              </Text>
+            )}
 
-              <TouchableOpacity onPress={() => copyToClipboard(item.short_code)}>
-                <Text style={[styles.copyText, { color: theme.primary }]}>Copy Short URL</Text>
-              </TouchableOpacity>
+            <TouchableOpacity onPress={() => copyToClipboard(item.short_code)}>
+              <Text style={[styles.copyText, { color: theme.primary }]}>Copy Short URL</Text>
+            </TouchableOpacity>
 
-              {copiedShortCode === item.short_code && copyMessage && (
-                <Text style={styles.copyConfirmation}>{copyMessage}</Text>
-              )}
+            {copiedShortCode === item.short_code && copyMessage && (
+              <Text style={styles.copyConfirmation}>{copyMessage}</Text>
+            )}
 
-              <TouchableOpacity
-                onPress={() => handleDelete(item.short_code)}
-                style={[styles.deleteButton, { backgroundColor: '#DC3545' }]}
-              >
-                <Text style={styles.deleteText}>Delete</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
-      )}
-    </View>
+            <TouchableOpacity
+              onPress={() => handleDelete(item.short_code)}
+              style={[styles.deleteButton, { backgroundColor: '#DC3545' }]}
+            >
+              <Text style={styles.deleteText}>Delete</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
+    </KeyboardAvoidingView>
   );
 }
 
@@ -205,6 +250,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     textAlign: 'center',
   },
+  searchInput: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 12,
+    marginBottom: 16,
+    backgroundColor: '#2C2C2C',
+  },
   list: {
     width: '100%',
   },
@@ -212,7 +266,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 28,
     marginBottom: 24,
-    borderLeftWidth: 20,
+    borderLeftWidth: 5,
   },
   urlText: {
     fontWeight: 'bold',
