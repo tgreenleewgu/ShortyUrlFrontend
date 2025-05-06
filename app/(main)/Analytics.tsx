@@ -150,19 +150,35 @@ export default function AnalyticsScreen() {
     >
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
 
-      <TouchableOpacity
-        onPress={() => router.replace('/(main)')}
-        style={{ position: 'absolute', top: 20, left: 20, zIndex: 999, padding: 10 }}
+      <View
+        style={{
+          position: 'absolute',
+          top: 20,
+          left: 0,
+          right: 0,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: 20,
+          zIndex: 999,
+        }}
       >
-        <Ionicons name="home-outline" size={28} color={theme.text} />
-      </TouchableOpacity>
+        {/* Home Button */}
+        <TouchableOpacity onPress={() => router.replace('/(main)')}>
+          <Ionicons name="home-outline" size={28} color={theme.text} />
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => router.replace('/(main)/CreateUrl')}
-        style={{ position: 'absolute', top: 20, right: 20, zIndex: 999, padding: 10 }}
-      >
-        <Ionicons name="link-sharp" size={35} color={theme.text} />
-      </TouchableOpacity>
+        {/* Refresh Button */}
+        <TouchableOpacity onPress={fetchAnalytics}>
+          <Ionicons name="refresh-outline" size={28} color={theme.text} />
+        </TouchableOpacity>
+
+        {/* Create URL Button */}
+        <TouchableOpacity onPress={() => router.replace('/(main)/CreateUrl')}>
+          <Ionicons name="link-sharp" size={32} color={theme.text} />
+        </TouchableOpacity>
+      </View>
+
 
       <FlatList
         data={filteredUrls}
