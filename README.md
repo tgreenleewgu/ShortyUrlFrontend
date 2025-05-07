@@ -13,7 +13,7 @@ This guide walks you through setting up and maintaining the **ShortyURL** fronte
 
 ### 1. Clone the Repository (if not already done)
 ```bash
-git clone https://gitlab.com/your-username/shortyurl.git
+git clone https://github.com/tgreenleewgu/ShortyUrlFrontend.git
 cd shortyurl
 ```
 
