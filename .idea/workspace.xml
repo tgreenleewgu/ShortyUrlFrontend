@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="added time stamp to analytics all time in UTC do to dev settings">
+    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="removed index tabs">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(main)/Analytics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/Analytics.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746495612944</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="removed index tabs">
+      <option name="closed" value="true" />
+      <created>1746496261344</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746496261344</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,6 +231,7 @@
     <MESSAGE value="fixed call issue with Delete function." />
     <MESSAGE value="added scroll function to analytics screen." />
     <MESSAGE value="added time stamp to analytics all time in UTC do to dev settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="added time stamp to analytics all time in UTC do to dev settings" />
+    <MESSAGE value="removed index tabs" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed index tabs" />
   </component>
 </project>
