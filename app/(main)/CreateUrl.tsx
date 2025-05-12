@@ -1,4 +1,3 @@
-// app/CreateURL.tsx
 import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
@@ -20,10 +19,14 @@ import * as Clipboard from 'expo-clipboard';
 import { Colors } from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import Constants from 'expo-constants';
 
-const API_URL = 'http://localhost:8000';
-const API_ENDPOINT = '/api/shorten/';
-const USER_INFO_API = `${API_URL}/api/me/`;
+// const { BACKEND_URL } = Constants.expoConfig?.extra ?? Constants.manifest.extra;
+const BACKEND_URL = process.env.BACKEND_URL;
+
+const API_ENDPOINT = `${BACKEND_URL}/api/shorten/`;
+const USER_INFO_API = `${BACKEND_URL}/api/me/`;
+const CSRF_API = `${BACKEND_URL}/api/csrf/`;
 
 function getCSRFToken() {
   const match = document.cookie.match(/csrftoken=([^;]+)/);
@@ -71,13 +74,14 @@ export default function CreateURL() {
       setResponseMessage('Please enter a custom alias');
       return;
     }
+
     setIsLoading(true);
     setShortUrl('');
     setResponseMessage('');
     setResponseStatus('');
 
     try {
-      await fetch(`${API_URL}/api/csrf/`, { credentials: 'include' });
+      await fetch(CSRF_API, { credentials: 'include' });
       const csrfToken = getCSRFToken();
       if (!csrfToken) throw new Error('CSRF token missing from cookies.');
 
@@ -85,7 +89,7 @@ export default function CreateURL() {
         ? { original_url: longUrl }
         : { original_url: longUrl, custom_code: customAlias };
 
-      const response = await fetch(`${API_URL}${API_ENDPOINT}`, {
+      const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +143,7 @@ export default function CreateURL() {
 
       <TouchableOpacity
         onPress={() => router.replace('/(main)/Analytics')}
-        style={{ position: 'absolute', top: 20, right: 20, zIndex: 999, padding:  10 }}
+        style={{ position: 'absolute', top: 20, right: 20, zIndex: 999, padding: 10 }}
       >
         <Ionicons name="bar-chart-outline" size={35} color={theme.text} />
       </TouchableOpacity>
@@ -207,7 +211,9 @@ export default function CreateURL() {
           </TouchableOpacity>
 
           {responseMessage !== '' && (
-            <Text style={[styles.message, { color: responseStatus === 'success' ? 'limegreen' : 'red' }]}>{responseMessage}</Text>
+            <Text style={[styles.message, { color: responseStatus === 'success' ? 'limegreen' : 'red' }]}>
+              {responseMessage}
+            </Text>
           )}
 
           {shortUrl !== '' && (

@@ -10,7 +10,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { setCustomText } from 'react-native-global-props';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import 'react-native-reanimated';
+// import 'react-native-reanimated';
 
 // Prevent auto-hide until we’re ready
 SplashScreen.preventAutoHideAsync();

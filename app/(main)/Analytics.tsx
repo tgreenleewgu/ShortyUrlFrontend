@@ -20,6 +20,10 @@ import { Colors } from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import Cookies from 'js-cookie';
+import Constants from 'expo-constants';
+
+// const { BACKEND_URL } = Constants.expoConfig?.extra ?? Constants.manifest.extra;
+const BACKEND_URL = process.env.BACKEND_URL;
 
 export const unstable_settings = {
   initialRouteName: 'Analytics',
@@ -44,7 +48,7 @@ export default function AnalyticsScreen() {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/me/", {
+      const res = await fetch(`${BACKEND_URL}/api/me/`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -65,7 +69,7 @@ export default function AnalyticsScreen() {
       const currentUser = await fetchUser();
       if (!currentUser) return;
 
-      const res = await axios.get("http://localhost:8000/api/analytics/", {
+      const res = await axios.get(`${BACKEND_URL}/api/analytics/`, {
         withCredentials: true,
         params: { username: currentUser },
       });
@@ -81,13 +85,13 @@ export default function AnalyticsScreen() {
 
   const handleDelete = async (shortCode) => {
     try {
-      await fetch('http://localhost:8000/api/csrf/', {
+      await fetch(`${BACKEND_URL}/api/csrf/`, {
         credentials: 'include',
       });
 
       const csrfToken = Cookies.get('csrftoken');
 
-      await axios.delete(`http://localhost:8000/api/analytics/${shortCode}/`, {
+      await axios.delete(`${BACKEND_URL}/api/analytics/${shortCode}/`, {
         headers: {
           'X-CSRFToken': csrfToken,
         },
@@ -101,7 +105,7 @@ export default function AnalyticsScreen() {
   };
 
   const copyToClipboard = (shortCode) => {
-    Clipboard.setString(`http://localhost:8000/s/${shortCode}`);
+    Clipboard.setString(`${BACKEND_URL}/s/${shortCode}`);
     setCopiedShortCode(shortCode);
     setCopyMessage("Short URL copied to clipboard!");
     setTimeout(() => {
@@ -139,7 +143,6 @@ export default function AnalyticsScreen() {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true,
-//       timeZoneName: 'short', // keep this if you want to show EDT, PDT, etc.
     });
   };
 
@@ -150,35 +153,17 @@ export default function AnalyticsScreen() {
     >
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
 
-      <View
-        style={{
-          position: 'absolute',
-          top: 20,
-          left: 0,
-          right: 0,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingHorizontal: 20,
-          zIndex: 999,
-        }}
-      >
-        {/* Home Button */}
+      <View style={styles.headerBar}>
         <TouchableOpacity onPress={() => router.replace('/(main)')}>
           <Ionicons name="home-outline" size={28} color={theme.text} />
         </TouchableOpacity>
-
-        {/* Refresh Button */}
         <TouchableOpacity onPress={fetchAnalytics}>
           <Ionicons name="refresh-outline" size={28} color={theme.text} />
         </TouchableOpacity>
-
-        {/* Create URL Button */}
         <TouchableOpacity onPress={() => router.replace('/(main)/CreateUrl')}>
           <Ionicons name="link-sharp" size={32} color={theme.text} />
         </TouchableOpacity>
       </View>
-
 
       <FlatList
         data={filteredUrls}
@@ -244,10 +229,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 60,
   },
-  centeredContent: {
-    flex: 1,
+  headerBar: {
+    position: 'absolute',
+    top: 20,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 20,
+    zIndex: 999,
   },
   innerContainer: {
     width: '100%',

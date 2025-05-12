@@ -1,4 +1,3 @@
-
 import { Tabs, router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Platform, View } from 'react-native';
@@ -8,8 +7,9 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Constants from 'expo-constants';
 
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = process.env.BACKEND_URL;
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -28,15 +28,13 @@ export default function TabLayout() {
 
         console.log("✅ Status:", res.status);
 
-        if (!res.ok) {
-          throw new Error("Not authenticated");
-        }
+        if (!res.ok) throw new Error("Not authenticated");
 
         const data = await res.json();
         console.log("✅ Response data:", data);
 
         if (data.username) {
-          setUser(data.username);
+          isMounted && setUser(data.username);
         } else {
           throw new Error("No username found");
         }
@@ -44,10 +42,9 @@ export default function TabLayout() {
         console.log("❌ Redirecting to login:", err.message);
         router.replace("/(auth)/login");
       } finally {
-        setLoading(false);
+        isMounted && setLoading(false);
       }
     };
-
 
     checkAuth();
 
@@ -65,24 +62,15 @@ export default function TabLayout() {
   }
 
   return user ? (
-//     <Tabs
-//       screenOptions={{
-//         headerShown: false,
-//         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-//         tabBarButton: HapticTab,
-//         tabBarBackground: TabBarBackground,
-//         tabBarStyle: Platform.select({ ios: { position: 'absolute' }, default: {} }),
-//       }}
-//     >
-       <Tabs
-         screenOptions={{
-           headerShown: false,
-           tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-           tabBarButton: HapticTab,
-           tabBarBackground: TabBarBackground,
-           tabBarStyle: { display: 'none' }, // 👈 Hide the tab bar
-         }}
-       >
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarButton: HapticTab,
+        tabBarBackground: TabBarBackground,
+        tabBarStyle: { display: 'none' }, // You can toggle this for prod/dev
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -97,14 +85,15 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="magnifying glass.circle.fill" color={color} />,
         }}
       />
-      <Tabs.Screen
-        name="CreateURL"
-        options={{
-          title: 'Create URL',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="link.badge.plus" color={color} />,
-        }}
-      />
-    </Tabs>
-  ) : null;
-}
-
+       <Tabs.Screen
+              name="CreateURL"
+              options={{
+                title: 'Create URL',
+                tabBarIcon: ({ color }) => (
+                  <IconSymbol size={28} name="link.badge.plus" color={color} />
+                ),
+              }}
+            />
+          </Tabs>
+        ) : null;
+      }
