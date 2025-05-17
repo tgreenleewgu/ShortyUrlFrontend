@@ -1,0 +1,87 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"NONE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b465fe71-bd28-47fe-a602-fc0efed8ce88\" name=\"Changes\" comment=\"Part B Complete\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/README.md\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;tgreenleewgu&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/tgreenleewgu/ShortyUrlFrontend.git&quot;,\r\n    &quot;accountId&quot;: &quot;9d382db1-3cd4-415d-8e21-67b4fa20aa8d&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2uNHxxwUbkeTtzn8WXVYccJFZOb\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.cidr.known.project.marker\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"RunOnceActivity.readMode.enableVisualFormatting\": \"true\",\r\n    \"cf.first.check.clang-format\": \"false\",\r\n    \"cidr.known.project.marker\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images\",\r\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\travi\\code\\frontend\\ShortyUrlFrontend\\assets\\images\" />\r\n      <recent name=\"C:\\code\\frontend\\ShortyUrlFrontend\\assets\\images\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\travi\\code\\frontend\\ShortyUrlFrontend\\assets\" />\r\n      <recent name=\"C:\\code\\frontend\\ShortyUrlFrontend\\app\\src\" />\r\n      <recent name=\"C:\\code\\frontend\\ShortyUrlFrontend\\app\\context\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b465fe71-bd28-47fe-a602-fc0efed8ce88\" name=\"Changes\" comment=\"\" />\r\n      <created>1742082363220</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1742082363220</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Post is hitting the backend but with errors\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742083816112</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742083816112</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"got frontend working with backend and DB. &#10;POST and GET are working.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742085351480</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742085351480</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"updated tabs\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1743122563196</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1743122563197</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"working version with email send to DB\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1744504975358</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1744504975358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"quick fix for email issue in DB\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1744506661149</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1744506661149</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"working version with correct analytics with user email only.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1744588973866</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1744588973866</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"working commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745513049958</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745513049958</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\" got soical auth working still need to get frontend nav fixed.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746233532148</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746233532148</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"added google auth, but will not function in local dev setting will redeploy when app is under a single domain.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746409549865</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746409549865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"working MVP of ShortyUrl\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746469226813</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746469226813</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"fixed call issue with Delete function.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746471219059</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746471219059</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"added scroll function to analytics screen.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746475534016</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746475534016</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"added time stamp to analytics all time in UTC do to dev settings\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746495612944</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746495612944</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"removed index tabs\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746496261344</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746496261344</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Part B Complete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746581436172</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746581436172</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"16\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\".env\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"OPEN_GENERIC_TABS\">\r\n      <map>\r\n        <entry key=\"c6c98646-4143-4edd-8e67-62ba5c977674\" value=\"TOOL_WINDOW\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"c6c98646-4143-4edd-8e67-62ba5c977674\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Post is hitting the backend but with errors\" />\r\n    <MESSAGE value=\"got frontend working with backend and DB. &#10;POST and GET are working.\" />\r\n    <MESSAGE value=\"updated tabs\" />\r\n    <MESSAGE value=\"working version with email send to DB\" />\r\n    <MESSAGE value=\"quick fix for email issue in DB\" />\r\n    <MESSAGE value=\"working version with correct analytics with user email only.\" />\r\n    <MESSAGE value=\"working commit\" />\r\n    <MESSAGE value=\" got soical auth working still need to get frontend nav fixed.\" />\r\n    <MESSAGE value=\" changed tabs to main\" />\r\n    <MESSAGE value=\"added google auth, but will not function in local dev setting will redeploy when app is under a single domain.\" />\r\n    <MESSAGE value=\"working MVP of ShortyUrl\" />\r\n    <MESSAGE value=\"fixed call issue with Delete function.\" />\r\n    <MESSAGE value=\"added scroll function to analytics screen.\" />\r\n    <MESSAGE value=\"added time stamp to analytics all time in UTC do to dev settings\" />\r\n    <MESSAGE value=\"removed index tabs\" />\r\n    <MESSAGE value=\"Part B Complete\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Part B Complete\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ea059ecd235558397761a73967eda92558a84e83)
++++ b/.idea/workspace.xml	(date 1747442662745)
+@@ -4,9 +4,13 @@
+     <option name="autoReloadType" value="NONE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="Part B Complete">
++    <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="Part B after hosting project">
++      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/(main)/CreateUrl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/CreateUrl.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/(main)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(main)/_layout.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -46,20 +50,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.cidr.known.project.marker": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+-    "cf.first.check.clang-format": "false",
+-    "cidr.known.project.marker": "true",
+-    "git-widget-placeholder": "main",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images",
+-    "settings.editor.selected.configurable": "preferences.pluginManager"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
++    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
++    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\travi\code\frontend\ShortyUrlFrontend\assets\images" />
+@@ -200,7 +204,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1746581436172</updated>
+     </task>
+-    <option name="localTasksCounter" value="16" />
++    <task id="LOCAL-00016" summary="Part B after hosting project">
++      <option name="closed" value="true" />
++      <created>1747070848677</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1747070848677</updated>
++    </task>
++    <option name="localTasksCounter" value="17" />
+     <servers />
+   </component>
+   <component name="UnknownFeatures">
+@@ -244,6 +256,7 @@
+     <MESSAGE value="added time stamp to analytics all time in UTC do to dev settings" />
+     <MESSAGE value="removed index tabs" />
+     <MESSAGE value="Part B Complete" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Part B Complete" />
++    <MESSAGE value="Part B after hosting project" />
++    <option name="LAST_COMMIT_MESSAGE" value="Part B after hosting project" />
+   </component>
+ </project>
+\ No newline at end of file

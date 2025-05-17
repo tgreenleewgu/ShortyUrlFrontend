@@ -1,0 +1,125 @@
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"shortyurlfrontend\",\r\n  \"main\": \"expo-router/entry\",\r\n  \"version\": \"1.0.0\",\r\n  \"scripts\": {\r\n    \"start\": \"expo start\",\r\n    \"reset-project\": \"node ./scripts/reset-project.js\",\r\n    \"android\": \"expo start --android\",\r\n    \"ios\": \"expo start --ios\",\r\n    \"web\": \"expo start --web\",\r\n    \"test\": \"jest --watchAll\",\r\n    \"lint\": \"expo lint\"\r\n  },\r\n  \"jest\": {\r\n    \"preset\": \"jest-expo\"\r\n  },\r\n  \"dependencies\": {\r\n    \"@expo-google-fonts/inter\": \"^0.3.0\",\r\n    \"@expo/server\": \"^0.5.3\",\r\n    \"@expo/vector-icons\": \"^14.0.2\",\r\n    \"@react-native-async-storage/async-storage\": \"^1.23.1\",\r\n    \"@react-native-clipboard/clipboard\": \"^1.16.2\",\r\n    \"@react-navigation/stack\": \"^7.1.2\",\r\n    \"@rneui/themed\": \"^4.0.0-rc.8\",\r\n    \"@supabase/supabase-js\": \"^2.49.1\",\r\n    \"axios\": \"^1.8.3\",\r\n    \"expo\": \"~52.0.38\",\r\n    \"expo-auth-session\": \"~6.0.3\",\r\n    \"expo-blur\": \"~14.0.3\",\r\n    \"expo-clipboard\": \"^7.0.1\",\r\n    \"expo-constants\": \"~17.0.8\",\r\n    \"expo-font\": \"~13.0.4\",\r\n    \"expo-haptics\": \"~14.0.1\",\r\n    \"expo-linear-gradient\": \"~14.0.2\",\r\n    \"expo-linking\": \"~7.0.5\",\r\n    \"expo-router\": \"~4.0.20\",\r\n    \"expo-secure-store\": \"~14.0.1\",\r\n    \"expo-splash-screen\": \"~0.29.22\",\r\n    \"expo-status-bar\": \"~2.0.1\",\r\n    \"expo-symbols\": \"~0.2.2\",\r\n    \"expo-system-ui\": \"~4.0.8\",\r\n    \"expo-web-browser\": \"~14.0.2\",\r\n    \"js-cookie\": \"^3.0.5\",\r\n    \"react\": \"18.3.1\",\r\n    \"react-dom\": \"18.3.1\",\r\n    \"react-native\": \"0.76.7\",\r\n    \"react-native-elements\": \"^3.4.3\",\r\n    \"react-native-global-props\": \"^1.1.5\",\r\n    \"react-native-paper\": \"^5.13.1\",\r\n    \"react-native-svg\": \"^15.11.2\",\r\n    \"react-native-url-polyfill\": \"^2.0.0\",\r\n    \"react-native-vector-icons\": \"^10.2.0\",\r\n    \"react-native-web\": \"~0.19.13\",\r\n    \"react-native-webview\": \"13.12.5\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@babel/core\": \"^7.25.2\",\r\n    \"@types/jest\": \"^29.5.12\",\r\n    \"@types/react\": \"~18.3.12\",\r\n    \"@types/react-test-renderer\": \"^18.3.0\",\r\n    \"jest\": \"^29.2.1\",\r\n    \"jest-expo\": \"~52.0.6\",\r\n    \"react-native-svg-transformer\": \"^1.5.0\",\r\n    \"react-test-renderer\": \"18.3.1\",\r\n    \"typescript\": \"^5.3.3\"\r\n  },\r\n  \"private\": true\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	(revision baac44e38e42cfceee21f15f94d74523f8aa4dea)
++++ b/package.json	(date 1747447546612)
+@@ -51,7 +51,8 @@
+     "react-native-url-polyfill": "^2.0.0",
+     "react-native-vector-icons": "^10.2.0",
+     "react-native-web": "~0.19.13",
+-    "react-native-webview": "13.12.5"
++    "react-native-webview": "13.12.5",
++    "react-native-gesture-handler": "~2.20.2"
+   },
+   "devDependencies": {
+     "@babel/core": "^7.25.2",
+Index: package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package-lock.json b/package-lock.json
+--- a/package-lock.json	(revision baac44e38e42cfceee21f15f94d74523f8aa4dea)
++++ b/package-lock.json	(date 1747447546649)
+@@ -38,6 +38,7 @@
+         "react-dom": "18.3.1",
+         "react-native": "0.76.7",
+         "react-native-elements": "^3.4.3",
++        "react-native-gesture-handler": "~2.20.2",
+         "react-native-global-props": "^1.1.5",
+         "react-native-paper": "^5.13.1",
+         "react-native-svg": "^15.11.2",
+@@ -2260,7 +2261,6 @@
+       "resolved": "https://registry.npmjs.org/@egjs/hammerjs/-/hammerjs-2.0.17.tgz",
+       "integrity": "sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@types/hammerjs": "^2.0.36"
+       },
+@@ -4821,8 +4821,7 @@
+       "version": "2.0.46",
+       "resolved": "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.46.tgz",
+       "integrity": "sha512-ynRvcq6wvqexJ9brDMS4BnBLzmr0e14d6ZJTEShTBWKymQiHwlAyGu0ZPEFI2Fh1U53F7tN9ufClWM5KvqkKOw==",
+-      "license": "MIT",
+-      "peer": true
++      "license": "MIT"
+     },
+     "node_modules/@types/istanbul-lib-coverage": {
+       "version": "2.0.6",
+@@ -12666,7 +12665,6 @@
+       "resolved": "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.20.2.tgz",
+       "integrity": "sha512-HqzFpFczV4qCnwKlvSAvpzEXisL+Z9fsR08YV5LfJDkzuArMhBu2sOoSPUF/K62PCoAb+ObGlTC83TKHfUd0vg==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@egjs/hammerjs": "^2.0.17",
+         "hoist-non-react-statics": "^3.3.0",
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"NONE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b465fe71-bd28-47fe-a602-fc0efed8ce88\" name=\"Changes\" comment=\"Part B Complete\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"RESET_MODE\" value=\"HARD\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;tgreenleewgu&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/tgreenleewgu/ShortyUrlFrontend.git&quot;,\r\n    &quot;accountId&quot;: &quot;9d382db1-3cd4-415d-8e21-67b4fa20aa8d&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2uNHxxwUbkeTtzn8WXVYccJFZOb\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,\r\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\r\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;working__branch&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\travi\\code\\frontend\\ShortyUrlFrontend\\assets\\images\" />\r\n      <recent name=\"C:\\code\\frontend\\ShortyUrlFrontend\\assets\\images\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\travi\\code\\frontend\\ShortyUrlFrontend\\assets\" />\r\n      <recent name=\"C:\\code\\frontend\\ShortyUrlFrontend\\app\\src\" />\r\n      <recent name=\"C:\\code\\frontend\\ShortyUrlFrontend\\app\\context\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b465fe71-bd28-47fe-a602-fc0efed8ce88\" name=\"Changes\" comment=\"\" />\r\n      <created>1742082363220</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1742082363220</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Post is hitting the backend but with errors\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742083816112</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742083816112</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"got frontend working with backend and DB. &#10;POST and GET are working.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1742085351480</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1742085351480</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"updated tabs\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1743122563196</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1743122563197</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"working version with email send to DB\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1744504975358</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1744504975358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"quick fix for email issue in DB\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1744506661149</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1744506661149</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"working version with correct analytics with user email only.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1744588973866</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1744588973866</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"working commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1745513049958</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1745513049958</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\" got soical auth working still need to get frontend nav fixed.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746233532148</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746233532148</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"added google auth, but will not function in local dev setting will redeploy when app is under a single domain.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746409549865</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746409549865</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"working MVP of ShortyUrl\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746469226813</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746469226813</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"fixed call issue with Delete function.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746471219059</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746471219059</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"added scroll function to analytics screen.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746475534016</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746475534016</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"added time stamp to analytics all time in UTC do to dev settings\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746495612944</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746495612944</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"removed index tabs\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746496261344</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746496261344</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Part B Complete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746581436172</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746581436172</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"16\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"OPEN_GENERIC_TABS\">\r\n      <map>\r\n        <entry key=\"c6c98646-4143-4edd-8e67-62ba5c977674\" value=\"TOOL_WINDOW\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n        <entry key=\"c6c98646-4143-4edd-8e67-62ba5c977674\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Post is hitting the backend but with errors\" />\r\n    <MESSAGE value=\"got frontend working with backend and DB. &#10;POST and GET are working.\" />\r\n    <MESSAGE value=\"updated tabs\" />\r\n    <MESSAGE value=\"working version with email send to DB\" />\r\n    <MESSAGE value=\"quick fix for email issue in DB\" />\r\n    <MESSAGE value=\"working version with correct analytics with user email only.\" />\r\n    <MESSAGE value=\"working commit\" />\r\n    <MESSAGE value=\" got soical auth working still need to get frontend nav fixed.\" />\r\n    <MESSAGE value=\" changed tabs to main\" />\r\n    <MESSAGE value=\"added google auth, but will not function in local dev setting will redeploy when app is under a single domain.\" />\r\n    <MESSAGE value=\"working MVP of ShortyUrl\" />\r\n    <MESSAGE value=\"fixed call issue with Delete function.\" />\r\n    <MESSAGE value=\"added scroll function to analytics screen.\" />\r\n    <MESSAGE value=\"added time stamp to analytics all time in UTC do to dev settings\" />\r\n    <MESSAGE value=\"removed index tabs\" />\r\n    <MESSAGE value=\"Part B Complete\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Part B Complete\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision baac44e38e42cfceee21f15f94d74523f8aa4dea)
++++ b/.idea/workspace.xml	(date 1747448063836)
+@@ -6,6 +6,8 @@
+   <component name="ChangeListManager">
+     <list default="true" id="b465fe71-bd28-47fe-a602-fc0efed8ce88" name="Changes" comment="Part B Complete">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -45,20 +47,20 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;working__branch&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.cidr.known.project.marker": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.readMode.enableVisualFormatting": "true",
++    "cf.first.check.clang-format": "false",
++    "cidr.known.project.marker": "true",
++    "git-widget-placeholder": "working__branch",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Users/travi/code/frontend/ShortyUrlFrontend/assets/images",
++    "settings.editor.selected.configurable": "preferences.pluginManager"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\travi\code\frontend\ShortyUrlFrontend\assets\images" />
+@@ -201,6 +203,9 @@
+     </task>
+     <option name="localTasksCounter" value="16" />
+     <servers />
++  </component>
++  <component name="UnknownFeatures">
++    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="OPEN_GENERIC_TABS">
